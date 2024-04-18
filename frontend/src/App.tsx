@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { socket } from './socket';
+import Chatbox from './components/Chatbox';
 
 function App() {
 
@@ -22,6 +23,7 @@ connectSocketF()
   return (
     <div className="App">
      <button onClick={connectSocketF}>send</button>
+     <Chatbox/>
     </div>
   );
 }
