@@ -3,25 +3,43 @@ import { socket } from './socket';
 
 function App() {
 
-  const connectSocketF = ()=>{
-    socket.on('connect', function () {
-      socket.emit('clientEmit', 'foo', 'bar', 'baz');
-    });
-  
-    socket.on('serverEmit', function (data) {
-      console.log(data);
-    });
-  }
+  const [allMessage, setAllMessage] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(()=>{
+   socket.connect();
+   return ()=>{
+    socket.disconnect()
+   }
+  },[])
 
   useEffect(()=>{
-connectSocketF()
+    function allMessgeF(value:any){
+      setAllMessage(allMessage.concat(value))
+      console.log(allMessage)
+    }
+    socket.on('message',allMessgeF)
+
+    return ()=>{
+      socket.off('message', allMessgeF)
+    }
+
+  },[setIsLoading])
+
+const chatF = (e:any)=>{
+  setIsLoading(true);
+  socket.emit('message', 'test',()=>{
+    setAllMessage(allMessage.concat('test'))
+  })
+ 
+ 
+}
 
 
-  },[])
+
 
   return (
     <div className="App">
-     <button onClick={connectSocketF}>send</button>
+     <button onClick={chatF}>send</button>
     </div>
   );
 }

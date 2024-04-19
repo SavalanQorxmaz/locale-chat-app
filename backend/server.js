@@ -14,12 +14,17 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', function (socket) {
-    socket.emit('serverEmit', 'foo', 'bar', 'baz');
+   
   
-    socket.on('clientEmit', function (data) {
-      console.log(data);
-    });
+      console.log('data');
+      socket.on('message',(socket)=>{
+        console.log(socket)
+        io.emit('message', 'server message');
+      })
+  
+ 
   });
+ 
 
 server.listen(8000, () => {
   console.log('listening on *:8000');
