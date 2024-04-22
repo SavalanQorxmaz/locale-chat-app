@@ -4,63 +4,66 @@ body{
 
 
 
-.generalBox{
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: auto;
-    height: 800px;
-    padding: 10px;
-    border: 1px solid gray;
-    border-radius: 10px;
-
-    .nameLine{
-        height: 40px;
-        background-color: rgb(137, 172, 172);
-        width: 100%;
-        border: 1px;
-        border-radius: 10px;
-        border-color: black;
+.container{
+    .generalBox{
+        background-color: white;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        p{
-            text-align: center;
-
-        }
-    }
-    .conversationBox{
-        width: 100%;
-        height: 100%;
-        padding: 10px;
-
-    }
-    .typingLine{
-        height: 30px;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
-        align-items: center;
+        margin: auto;
+        height: 800px;
         padding: 10px;
         border: 1px solid gray;
         border-radius: 10px;
-        .typing{
+    
+        .nameLine{
+            height: 40px;
+            background-color: rgb(137, 172, 172);
+            width: 100%;
+            border: 1px;
+            border-radius: 10px;
+            border-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            p{
+                text-align: center;
+    
+            }
+        }
+        .conversationBox{
             width: 100%;
             height: 100%;
-            border: none;
             padding: 10px;
+    
         }
-        .sendTyping{
-            background-color: rgb(124, 124, 187);
-            text-align: center;
-            height: 25px;
-            width: 25px;
-            border-radius: 100%;
-            font-weight: 800;
-            font-size: large;
-            padding: 2px;
+        .typingLine{
+            height: 30px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid gray;
+            border-radius: 10px;
+            .typing{
+                width: 100%;
+                height: 100%;
+                border: none;
+                padding: 10px;
+                outline: none;
+            }
+            .sendTyping{
+                background-color: rgb(124, 124, 187);
+                text-align: center;
+                height: 25px;
+                width: 25px;
+                border-radius: 100%;
+                font-weight: 800;
+                font-size: large;
+                padding: 2px;
+            }
         }
     }
 }
@@ -74,27 +77,48 @@ body{
     padding: 10px;
     border: 1px solid gray;
     border-radius: 10px;
+    h3{
+        font-style: italic;
+        text-align: center;
+    }
     form{
         display: flex;
         flex-direction: column;
         padding: 10px;
-        #name{
-            padding: 10px;
-            font-style: italic;
-            border-radius: 5px;
-            border: none;
-            background-color: rgb(166, 198, 224);
-            margin-top: 10px;
-          
+        .selectRoom{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            #room{
+                padding: 10px;
+                font-style: italic;
+                border-radius: 5px;
+                border: none;
+                background-color: rgb(166, 198, 224);
+                margin-top: 10px;
+                outline: none;          
+            }
+            #radio{
+                margin: 5px;
+            }
+            #createRoom{
+                padding: 10px;
+                font-style: italic;
+                border-radius: 5px;
+                border: none;
+                background-color: rgb(166, 198, 224);
+                margin-top: 10px;
+                outline: none;          
+            }
         }
-        #password{
+        #nickname{
             padding: 10px;
             font-style: italic;
             border-radius: 5px;
             border: none;
             background-color: rgb(166, 198, 224);
             margin-top: 10px;
-          
+            outline: none;
         }
         #submit{
             padding: 10px;            
@@ -102,7 +126,12 @@ body{
             border: none;
             background-color: rgb(55, 156, 77);
             margin-top: 10px;
-          
+            cursor: pointer;
+            text-transform: uppercase;
+            color: rgb(247, 244, 244);
+            font-weight: bolder;
+            font-size: large;
+            &:hover {background-color: green;}        
         }
     }
 }

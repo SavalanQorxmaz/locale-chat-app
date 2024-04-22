@@ -1,8 +1,17 @@
 @import './components/chatbox.scss';
 
+@mixin containertemplate ($screenwidth,$containerwidth){
+    @media screen and (min-width:$screenwidth) {
+        .container{
+            width: $containerwidth;
+            border: 2px solid black;
+            margin: auto;
+            padding: 0;
+        }
+    }
 
-.container{
-    margin: auto;
-    padding: 0;
-       
 }
+
+@include containertemplate(0px, 100%);
+@include containertemplate(576px, 576px);
+@include containertemplate(768px, 768px);
