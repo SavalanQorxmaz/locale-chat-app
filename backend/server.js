@@ -13,17 +13,23 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-io.on('connection', function (socket) {
-   
-  
-      console.log('data');
-      socket.on('message',(socket)=>{
-        console.log(socket)
-        io.emit('message', 'server message');
-      })
-  
- 
+io.on('connection', (socket) => {
+  console.log(`⚡: ${socket.id} user just connected!`);
+  socket.on('client', (data) => {
+    console.log(data)
+    io.emit('server', data);
   });
+
+socket.on('typing',(data)=>{
+
+  console.log(data)
+  socket.broadcast.emit('typingRes', `${data}`)
+})
+
+  socket.on('disconnect', () => {
+    console.log('🔥: A user disconnected');
+  });
+});
  
 
 server.listen(8000, () => {

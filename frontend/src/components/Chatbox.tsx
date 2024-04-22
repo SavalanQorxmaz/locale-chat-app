@@ -24,13 +24,7 @@ const Chatbox = () => {
 
       </div>
 
-      <div className='loginPage'>
-        <form action="">
-        <input type="text" placeholder='nickname' id='name'/>
-        <input type="password" placeholder='password' id='password'/>
-        <input type="submit" id='submit'/>
-        </form>
-      </div>
+   
 
 
     </div>
