@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const corsOptions = {
-  origin: "http://localhost:3000"
+  origin: "*"
 }
 const io = new Server(server,{
     cors: corsOptions
@@ -42,9 +42,9 @@ app.post('/login',(req,res)=>{
 
 io.on('connection', (socket) => {
   console.log(`⚡: ${socket.id} user just connected!`);
-  socket.on('client', (data) => {
+  socket.on(`${rooms[0]}`, (data) => {
     console.log(data)
-    io.emit('server', data);
+    io.emit(`${rooms[0]}`, data);
   });
 
 socket.on('typing',(data)=>{
