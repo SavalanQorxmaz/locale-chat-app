@@ -1,15 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useLayoutEffect } from 'react';
 import { socket } from './socket';
-import Chatbox from './components/Chatbox';
+import Home from './pages/Home';
+import { useCookies } from 'react-cookie';
 import Login from './components/Login';
+import { UseSelector,useDispatch, useSelector } from 'react-redux';
+import { selectLoginInfo,userInfoType,loginInfo } from './features/slices/loginInfoSlice';
 
 function App() {
+
+  const dispatch = useDispatch()
+  const selectedLogin = useSelector(selectLoginInfo)
 
   const [allMessage, setAllMessage] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [socketConnected, setSocketConnected] = useState(socket.connected)
   const [initialLoading,setInitialLoading] = useState(false)
   const [newMessage,setNewMessage] = useState('')
+
+  const [cookies] = useCookies(['chat-room','chat-user'])
+
+  // cookie de user-room info movcuddursa ilkin deyer olsun
+
+  useLayoutEffect(()=>{
+    if(cookies['chat-room']){
+      dispatch(loginInfo((prev:userInfoType)=>({...prev,['room']:cookies['chat-room']})))
+    }
+    if(cookies['chat-user']){
+      dispatch(loginInfo((prev:userInfoType)=>({...prev,['user']:cookies['chat-user']})))
+    }
+
+  },[])
+  // ----------------------------------------------------
   
   const [value, setValue] = useState('');
   useEffect(()=>{
@@ -58,15 +79,9 @@ socket.on('server',(value:any)=>{
 
 
   return (
-    <div className="App">
-      <form onSubmit={ onSubmit }>
-      <input onChange={ e => {setValue(e.target.value)}} onKeyDown={userTyping} />
-
-      <button type="submit" disabled={ isLoading }>Submit</button>
-    </form>
-     <Chatbox/>
-     <Login/>
-    </div>
+  <>
+  <Login />
+  </>
   );
 }
 

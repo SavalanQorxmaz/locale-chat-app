@@ -1,0 +1,80 @@
+
+.login-page-back {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height:100vh;
+    background: linear-gradient(to bottom, rgba(14, 15, 15, 0.801), rgba(17, 16, 16, 0.151));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .loginPage{
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px;
+        border: 1px solid gray;
+        border-radius: 10px;
+        h3{
+            font-style: italic;
+            text-align: center;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            .selectRoom{
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                #room{
+                    padding: 10px;
+                    font-style: italic;
+                    border-radius: 5px;
+                    border: none;
+                    background-color: rgb(166, 198, 224);
+                    margin-top: 10px;
+                    outline: none;          
+                }
+                #radio{
+                    margin: 5px;
+                }
+                #createRoom{
+                    padding: 10px;
+                    font-style: italic;
+                    border-radius: 5px;
+                    border: none;
+                    background-color: rgb(166, 198, 224);
+                    margin-top: 10px;
+                    outline: none;          
+                }
+            }
+            #nickname{
+                padding: 10px;
+                font-style: italic;
+                border-radius: 5px;
+                border: none;
+                background-color: rgb(166, 198, 224);
+                margin-top: 10px;
+                outline: none;
+            }
+            #submit{
+                padding: 10px;            
+                border-radius: 5px;
+                border: none;
+                background-color: rgb(55, 156, 77);
+                margin-top: 10px;
+                cursor: pointer;
+                text-transform: uppercase;
+                color: rgb(247, 244, 244);
+                font-weight: bolder;
+                font-size: large;
+                &:hover {background-color: green;}        
+            }
+        }
+    }
+}

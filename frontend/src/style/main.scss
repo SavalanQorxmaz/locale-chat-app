@@ -1,17 +1,54 @@
 @import './components/chatbox.scss';
+@import './components/login.scss'; 
 
-@mixin containertemplate ($screenwidth,$containerwidth){
-    @media screen and (min-width:$screenwidth) {
-        .container{
-            width: $containerwidth;
-            border: 2px solid black;
-            margin: auto;
-            padding: 0;
+
+
+
+    .responsive-screen {
+        margin: auto;
+        @media screen and (min-width:0px) {
+           & {
+            width: 100%;
+           }
         }
+        @media screen and (min-width:576px) {
+           &{
+            width: 576px;
+           }
+        }
+
     }
 
-}
+    .hidden {
+        display: none;
+    }
+  
+  
+   
 
-@include containertemplate(0px, 100%);
-@include containertemplate(576px, 576px);
-@include containertemplate(768px, 768px);
+
+
+@media screen and (min-width:0px) {
+    .container{
+        width: 100%;
+        border: 2px solid black;
+        margin: auto;
+        padding: 0;
+    }
+}
+@media screen and (min-width:576px) {
+    .container{
+        width: 576px;
+        border: 2px solid black;
+        margin: auto;
+        padding: 0;
+    }
+}
+@media screen and (min-width:992px) {
+    .container{
+        width: 762px;
+        border: 2px solid black;
+        margin: auto;
+        padding: 0;
+    }
+}
