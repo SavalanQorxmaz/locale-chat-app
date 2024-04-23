@@ -56,15 +56,25 @@ const submifF = async (e:any)=>{
   return (
 <div className={!selectedCheckLogin?'login-page-back':'hidden'}>
 <div className='loginPage responsive-screen'>
+      <div className='loginHeader'>
       <h3>Söhbətə başla</h3>
-    <form action="" onSubmit={submifF} >
-      <div className='selectRoom'>
       <label htmlFor='new-room'> 
       <span>Yeni</span>
-      <input onChange={()=>{setNewLogin(prev=>({...prev,['new']:!newLogin.new}))}} type="checkbox" name="new" id="new-room"  /></label>
-    <input onChange={inputValueF} type="text" placeholder='create room' id='createRoom' name='room' defaultValue={selectedLogin.room}/>
+      <input onChange={()=>{setNewLogin(prev=>({...prev,['new']:!newLogin.new}))}} type="checkbox" name="new" id="new-room"  />
+      </label>
       </div>
+    <form action="" onSubmit={submifF} >
+ 
+<label htmlFor="">
+  <span>room</span>
+<input onChange={inputValueF} type="text" placeholder='create room' id='createRoom' name='room' defaultValue={selectedLogin.room}/>
+  </label>     
+
+<label htmlFor="">
+  <span> nickname
+    </span>
     <input onChange={inputValueF} type="text" placeholder='nickname' id='nickname' name='user' defaultValue={selectedLogin.user}/>
+    </label>    
     <input type="submit" id='submit' disabled = {newLogin.room.length<3 || newLogin.user.length<3? true:false}/>
     </form>
   </div>

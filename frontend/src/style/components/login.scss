@@ -17,20 +17,43 @@
         flex-direction: column;
         justify-content: space-between;
         padding: 10px;
-        border: 1px solid gray;
         border-radius: 10px;
+        border: none;
+        width: 350px;
+       .loginHeader{ 
+        display: flex;
+        justify-content: center;
+        align-items: center; 
         h3{
             font-style: italic;
             text-align: center;
+            margin-right: 10px;
         }
+        label{
+            span{
+                font-size: x-small;
+                margin-right: 5px;
+            }
+
+        }
+       }
         form{
             display: flex;
             flex-direction: column;
-            padding: 10px;
-            .selectRoom{
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
+            padding: 10px; 
+            label{
+                padding-left: 10px;
+                    font-style: italic;
+                    border-radius: 5px;
+                    border: none;
+                    background-color: rgb(166, 198, 224);
+                    margin-top: 10px;
+                    outline: none; 
+                span{
+                    margin-right: 5px;
+                    color: gray;
+                }
+            } 
                 #room{
                     padding: 10px;
                     font-style: italic;
@@ -51,8 +74,7 @@
                     background-color: rgb(166, 198, 224);
                     margin-top: 10px;
                     outline: none;          
-                }
-            }
+                }            
             #nickname{
                 padding: 10px;
                 font-style: italic;
