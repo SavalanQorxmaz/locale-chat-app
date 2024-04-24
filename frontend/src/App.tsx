@@ -13,23 +13,23 @@ function App() {
   const dispatch = useDispatch()
   const selectedLogin = useSelector(selectLoginInfo)
   const selectedCheckLogin = useSelector(selectLogin)
-
-  const [allMessage, setAllMessage] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [socketConnected, setSocketConnected] = useState(socket.connected)
-  const [initialLoading,setInitialLoading] = useState(false)
-
   const [cookies,setCookie] = useCookies(['chat-room','chat-user'])
+  const [cookieData,setCookieData] = useState({})
 
   // cookie de user-room info movcuddursa ilkin deyer olsun
 
   useLayoutEffect(()=>{
-    if(cookies['chat-room']){
-      dispatch(loginInfo((prev:userInfoType)=>({...prev,['room']:cookies['chat-room']})))
-    }
-    if(cookies['chat-user']){
-      dispatch(loginInfo((prev:userInfoType)=>({...prev,['user']:cookies['chat-user']})))
-    }
+    const obj = {room:cookies['chat-room'],user:cookies['chat-user']}
+    console.log(cookies['chat-room'],cookies['chat-user'])
+    // if(cookies['chat-room']){
+    //   // setCookieData((prev:userInfoType)=>({...prev,['room']:cookies['chat-room']}))
+    //   dispatch(loginInfo((prev:userInfoType)=>({...prev,['room']:cookies['chat-room']})))
+    // }
+    // if(cookies['chat-user']){
+    //   dispatch(loginInfo((prev:userInfoType)=>({...prev,['user']:cookies['chat-user']})))
+    //   // setCookieData((prev:userInfoType)=>({...prev,['user']:cookies['chat-user']}))
+    // }
+    dispatch(loginInfo(obj))
 
   },[])
   // ----------------------------------------------------

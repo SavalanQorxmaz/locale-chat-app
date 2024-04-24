@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { UseSelector,useDispatch, useSelector } from 'react-redux';
 import { selectLoginInfo,loginInfo } from '../features/slices/loginInfoSlice';
 import { checkReducer,selectLogin } from '../features/slices/isLoggedIn';
+import {socket} from '../socket'
 
 const Login = () => {
 
@@ -12,7 +13,7 @@ const Login = () => {
   const [newLogin,setNewLogin] = useState({
     user:selectedLogin.user,
     room:selectedLogin.room,
-    new:false
+    isNew:false
   })
 
 // daxil edilen adlari saxlamaq ucun
@@ -40,15 +41,26 @@ const submifF = async (e:any)=>{
   .then(res=>res.json())
   .then(res=>{
     switch(res[0]){
-      case 0:  dispatch(checkReducer(true));
+      case 0:  {
+        dispatch(checkReducer(false))
+      };
       break;
-      case 1:  dispatch(checkReducer(false));
+      case 1:  {
+        dispatch(checkReducer(true))
+        dispatch(loginInfo({...newLogin}))
+        socket.emit('new-room',{...newLogin})
+
+      };
       break;
-      case 2: dispatch(checkReducer(true));
+      case 2: {
+        dispatch(checkReducer(true))
+        socket.emit('existing-room',{...newLogin})
+        dispatch(loginInfo({['user']:newLogin.user,['room']:newLogin.room}))
+      };
       break;
       default:   dispatch(checkReducer(false));
     }
-    // console.log(res)
+    console.log(res)
   })
 
 }
@@ -60,7 +72,7 @@ const submifF = async (e:any)=>{
       <h3>Söhbətə başla</h3>
       <label htmlFor='new-room'> 
       <span>Yeni</span>
-      <input onChange={()=>{setNewLogin(prev=>({...prev,['new']:!newLogin.new}))}} type="checkbox" name="new" id="new-room"  />
+      <input onChange={()=>{setNewLogin(prev=>({...prev,['isNew']:!newLogin.isNew}))}} type="checkbox" name="new" id="new-room"  />
       </label>
       </div>
     <form action="" onSubmit={submifF} >

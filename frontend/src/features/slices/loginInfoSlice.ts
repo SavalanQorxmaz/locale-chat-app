@@ -9,8 +9,8 @@ export interface userInfoType{
 
  const initialState = {
     loginInfo:{
-        user:'salam',
-        room:'sagol'
+        user:'',
+        room:''
     }
 }
 
@@ -19,7 +19,7 @@ const loginInfoSlice = createSlice({
     initialState,
     reducers:{
         loginInfo:(state,actions)=>{
-            state.loginInfo = {...actions.payload}
+            state.loginInfo = actions.payload
         }
     }
 })
