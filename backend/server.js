@@ -9,7 +9,9 @@ const corsOptions = {
   origin: "*"
 }
 const io = new Server(server,{
-    cors: corsOptions
+    cors: {
+      origin: "*"
+    }
   });
 
 app.use(express.json())
@@ -22,7 +24,7 @@ const rooms = []
 const users = []
 
 app.post('/login',(req,res)=>{
-  // console.log('body:  ',req.body)
+  console.log('body:  ',req.body)
   if(req.body.isNew){
     if(rooms.indexOf(req.body.room)===-1){
       rooms.push(req.body.room)
@@ -34,7 +36,7 @@ app.post('/login',(req,res)=>{
     if(rooms.indexOf(req.body.room)>-1){
       res.send(JSON.stringify([2,'movcud otaga qosulma']))
     }
-    else res.send(JSON.stringify([0,'otaq movcud deyil']))
+    else res.send(JSON.stringify([3,'otaq movcud deyil']))
   }
   
   

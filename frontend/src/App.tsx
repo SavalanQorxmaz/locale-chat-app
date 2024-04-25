@@ -1,4 +1,5 @@
 import React, { useState, useEffect,useLayoutEffect } from 'react';
+import { Routes,Route } from 'react-router-dom';
 import { socket } from './socket';
 import Home from './pages/Home';
 import { useCookies } from 'react-cookie';
@@ -6,10 +7,11 @@ import Login from './components/Login';
 import { UseSelector,useDispatch, useSelector } from 'react-redux';
 import { selectLoginInfo,userInfoType,loginInfo } from './features/slices/loginInfoSlice';
 import { checkReducer,selectLogin } from './features/slices/isLoggedIn';
-import Chatbox from './components/Chatbox';
+import Chatbox from './pages/Chatbox';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
-
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const selectedLogin = useSelector(selectLoginInfo)
   const selectedCheckLogin = useSelector(selectLogin)
@@ -39,6 +41,10 @@ function App() {
     if(selectedCheckLogin){
       setCookie('chat-room',selectedLogin.room,)
     setCookie('chat-user',selectedLogin.user)
+    navigate('/chat')
+    }
+    else{
+      navigate('/')
     }
 
 
@@ -52,10 +58,10 @@ function App() {
 
 
   return (
-  <>
-  <Login />
-  {selectedCheckLogin?<Chatbox/>:null}
-  </>
+  <Routes>
+ <Route path='/' element = { <Login />}/>
+  <Route path='/chat' element = {selectedCheckLogin?<Chatbox/>:null}/>
+  </Routes>
   );
 }
 

@@ -15,6 +15,7 @@ const Login = () => {
     room:selectedLogin.room,
     isNew:false
   })
+  const [responseCode, setResponseCode] = useState(-1)
 
 // daxil edilen adlari saxlamaq ucun
   const inputValueF=(e: React.ChangeEvent<HTMLInputElement>)=>{
@@ -43,6 +44,7 @@ const submifF = async (e:any)=>{
     switch(res[0]){
       case 0:  {
         dispatch(checkReducer(false))
+        setResponseCode(0)
       };
       break;
       case 1:  {
@@ -56,6 +58,11 @@ const submifF = async (e:any)=>{
         dispatch(checkReducer(true))
         socket.emit('existing-room',{...newLogin})
         dispatch(loginInfo({['user']:newLogin.user,['room']:newLogin.room}))
+      };
+      break;
+      case 3:  {
+        dispatch(checkReducer(false))
+        setResponseCode(3)
       };
       break;
       default:   dispatch(checkReducer(false));
@@ -88,6 +95,14 @@ const submifF = async (e:any)=>{
     <input onChange={inputValueF} type="text" placeholder='nickname' id='nickname' name='user' defaultValue={selectedLogin.user}/>
     </label>    
     <input type="submit" id='submit' disabled = {newLogin.room.length<3 || newLogin.user.length<3? true:false}/>
+   {
+    responseCode===0? <p>Otaq mövcuddu</p>:null
+   }
+   {
+    responseCode===3? <p>Otaq mövcud deyil</p>:null
+   }
+    
+    
     </form>
   </div>
 </div>
